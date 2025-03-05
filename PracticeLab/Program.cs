@@ -1,54 +1,38 @@
 ﻿namespace PracticeLab;
 
 using System;
-using System.Collections.Generic;
+using System.IO;
 
 class Program
 {
-    static void Main()
+    static void Main(string[] args)
     {
-        List<string> names = new List<string>();
-        string input;
+        Console.Write("Please select name (Mateo or Other): ");
+        string mode = Console.ReadLine();
 
-        Console.WriteLine("Enter names (type 'done' to finish):");
-        while ((input = Console.ReadLine()) != "done")
+        if (mode.Equals("Mateo", StringComparison.OrdinalIgnoreCase))
         {
-            names.Add(input);
+            string command;
+
+            do
+            {
+                Console.Write("Enter New Spanish Word: ");
+                string newWord = Console.ReadLine();
+
+                Console.Write("Enter Comprehension Rating: ");
+                int comprehensionScore = int.Parse(Console.ReadLine());
+
+                string dateEntered = DateTime.Now.ToString("yyyy-MM-dd");
+                File.AppendAllText("SpanishVocab.data.txt", $"{newWord}:{comprehensionScore}:{dateEntered}{Environment.NewLine}");
+
+                Console.Write("Enter command (end or continue): ");
+                command = Console.ReadLine();
+
+            } while (!command.Equals("end", StringComparison.OrdinalIgnoreCase));
         }
-
-        Console.WriteLine("Select a name:");
-        for (int i = 0; i < names.Count; i++)
+        else
         {
-            Console.WriteLine($"{i + 1}. {names[i]}");
-        }
-
-        int selectedIndex = int.Parse(Console.ReadLine()) - 1;
-        string selectedName = names[selectedIndex];
-
-        Console.WriteLine($"Hello, {selectedName}! Please choose an option:");
-        Console.WriteLine("1. Add A new word");
-        Console.WriteLine("2. Update a comprehension score");
-        Console.WriteLine("3. Generate or View Report");
-        Console.WriteLine("4. End");
-
-        int option = int.Parse(Console.ReadLine());
-        switch (option)
-        {
-            case 1:
-                // Code to add a new word
-                break;
-            case 2:
-                // Code to update comprehension score
-                break;
-            case 3:
-                // Code to generate or view report
-                break;
-            case 4:
-                Console.WriteLine("Ending the application.");
-                break;
-            default:
-                Console.WriteLine("Invalid option selected.");
-                break;
+            Console.WriteLine("Sorry, this is app only for Mateo. If you would like to use please contact us."); 
         }
     }
 }
