@@ -1,4 +1,4 @@
-namespace PracticeLab
+namespace PracticeLab 
 {
     using System;
     using System.IO;

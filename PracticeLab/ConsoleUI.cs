@@ -19,11 +19,11 @@ namespace PracticeLab
 
                 do
                 {
-                    string stopName = AskForInput("Enter new word: ");
+                    string NewWord = AskForInput("Enter new word: ");
 
-                    int boarded = int.Parse(AskForInput("Enter Comprehension Score: "));
+                    int ComprehensionScore = int.Parse(AskForInput("Enter Comprehension Score: "));
 
-                    fileSaver.AppendLine(stopName + ";" + boarded);
+                    fileSaver.AppendLine(NewWord + ":" + ComprehensionScore);
 
                     command = AskForInput("Enter command (end or continue): ");
 
